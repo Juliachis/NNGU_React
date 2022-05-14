@@ -1,0 +1,10 @@
+.page_wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .content_wrapper {
+    flex: 1 1 auto;
+    padding: 10px;
+  }

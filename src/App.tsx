@@ -1,9 +1,14 @@
 import React from 'react';
 import './assets/scss/normalize.scss';
-import MainPage from './components/MainPage';
+import PageLayout from './layouts/PageLayout';
+import UsersPage from './entities/UsersPage';
 
 const App = () => {
-  return <MainPage />;
+  return (
+    <PageLayout>
+      <UsersPage />
+    </PageLayout>
+  );
 };
 
 export default App;

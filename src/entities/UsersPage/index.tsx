@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { usersUrl } from '../../api/constants';
+import { usersUrl } from '../../api/constats';
 import { IUsers } from '../../interfaces/IUsers';
 import UsersPageComponent from './components/UsersPageComponent';
 
 const UsersPage = () => {
   const [usersData, setUsersData] = useState<IUsers[] | null>(null);
 
+  const getData = async (url: string) => {
+    const response = await fetch(url);
+    const data = await response.json();
+    setUsersData(data);
+  };
+
   useEffect(() => {
     setTimeout(() => {
-      fetch(usersUrl)
-        .then((response) => response.json())
-        .then((data) => {
-          setUsersData(data);
-        });
+      getData(usersUrl);
     }, 1500);
   }, []);
 

@@ -6,11 +6,12 @@ import UserCard from './UserCard';
 interface IProps {
   usersDataAttr: IUsers[];
 }
+
 const UsersPageComponent: FC<IProps> = ({ usersDataAttr }) => {
   return (
     <div>
       <p>Список пользователей:</p>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
+      <div className={style.user_list}>
         {usersDataAttr.length ? (
           usersDataAttr.map((user) => {
             const { id, name, email } = user;

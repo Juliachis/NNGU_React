@@ -32,6 +32,9 @@ module.exports = {
     'react/function-component-definition': 'off',
     'import/prefer-default-export': 'off',
     'no-plusplus': 'off',
+    'default-param-last': 'off',
+    '@typescript-eslint/default-param-last': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
     'prettier/prettier': [
       'error',
       {

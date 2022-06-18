@@ -1,5 +1,5 @@
 import { IUsers } from '../../../interfaces/IUsers';
-import { ICreateUserAction, ISetUsersDataAction } from './interfaces';
+import { ISetUsersDataAction, ICreateUserAction } from './interfaces';
 
 export const SET_USERS_DATA = 'SET_USERS_DATA';
 

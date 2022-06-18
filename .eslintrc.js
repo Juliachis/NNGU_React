@@ -35,6 +35,8 @@ module.exports = {
     'default-param-last': 'off',
     '@typescript-eslint/default-param-last': 'off',
     'react-hooks/exhaustive-deps': 'warn',
+    'react/destructuring-assignment': 'off',
+    'react/require-default-props': 'off',
     'prettier/prettier': [
       'error',
       {

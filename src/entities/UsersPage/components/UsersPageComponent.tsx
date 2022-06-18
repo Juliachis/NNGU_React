@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { IUsers } from '../../../interfaces/IUsers';
 import Pagination from '../../../shared/Pagination';
 import { createUserAction } from '../../../store/pages/UsersPage/actions';
-
 import style from '../UsersPage.module.scss';
 import UserCard from './UserCard';
 
@@ -13,21 +12,19 @@ interface IProps {
 }
 
 const UsersPageComponent: FC<IProps> = ({ usersDataAttr }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const cardLimit = 3;
-
   const { search } = useLocation();
   const dispatch = useDispatch();
   const [nameValue, setNameValue] = useState('');
   const [emailValue, setEmailValue] = useState('');
 
-  const lastCardIndex = currentPage * cardLimit;
-  const firstCardIndex = lastCardIndex - cardLimit;
-  const currentCards = usersDataAttr.slice(firstCardIndex, lastCardIndex);
+  const currentPageNumber = new URLSearchParams(search).get('page');
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginatedUserData = usersDataAttr.slice(
+    (Number(currentPageNumber) - 1) * 3,
+    Number(currentPageNumber) * 3
+  );
 
-  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleFormSumbit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const newUser = {
@@ -42,8 +39,8 @@ const UsersPageComponent: FC<IProps> = ({ usersDataAttr }) => {
     <div>
       <p>Список пользователей:</p>
       <div className={style.user_list}>
-        {usersDataAttr.length ? (
-          currentCards.map((user) => {
+        {paginatedUserData.length ? (
+          paginatedUserData.map((user) => {
             const { id, name, email } = user;
             return (
               <React.Fragment key={`UserId:${id}`}>
@@ -54,26 +51,26 @@ const UsersPageComponent: FC<IProps> = ({ usersDataAttr }) => {
         ) : (
           <div>Пользователи не найдены.</div>
         )}
-        <Pagination limit={3} itemsAmount={usersDataAttr.length} paginate={paginate} />
-
-        <hr />
-
-        <form className={style.create_user__form_wrapper} onSubmit={handleFormSubmit}>
-          <input
-            type="text"
-            placeholder="Введите имя"
-            value={nameValue}
-            onChange={(event) => setNameValue(event.target.value)}
-          />
-          <input
-            type="email"
-            placeholder="Введите email"
-            value={emailValue}
-            onChange={(event) => setEmailValue(event.target.value)}
-          />
-          <button type="submit">Создать пользователя</button>
-        </form>
       </div>
+      <Pagination limit={3} itemsAmount={usersDataAttr.length} />
+
+      <hr />
+
+      <form className={style.create_user__form_wrapper} onSubmit={handleFormSumbit}>
+        <input
+          type="text"
+          placeholder="Введите имя"
+          value={nameValue}
+          onChange={(event) => setNameValue(event.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Введите Email"
+          value={emailValue}
+          onChange={(event) => setEmailValue(event.target.value)}
+        />
+        <button type="submit">Создать пользоватля</button>
+      </form>
     </div>
   );
 };

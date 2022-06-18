@@ -7,9 +7,9 @@ const UserComponent = () => {
   return (
     <>
       <button type="button" onClick={() => navigate(-1)}>
-        Вернутться назад
+        Вернуться назад
       </button>
-      <div>Страница пользователя {id}</div>;
+      <div>Страница пользователя {id}</div>
     </>
   );
 };

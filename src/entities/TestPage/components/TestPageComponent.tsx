@@ -11,12 +11,12 @@ const TestPageComponent = () => {
     });
   }, [someArray]);
 
-  // componnetDidMount
+  // componentDidMount
   useEffect(() => {
     console.log('Компонент отображен');
   }, []);
 
-  // componnetDidUpdate
+  // componentDidUpdate
   //   useEffect(() => {
   //     console.log('Компонент обновлен');
   //   });
@@ -25,12 +25,20 @@ const TestPageComponent = () => {
   //     console.log('COUNTER обновлен');
   //   }, [counter]);
 
-  //   // componentWillUnmount
   //   useEffect(() => {
-  //     return () => {
-  //       console.log('Компонент был удален');
-  //     };
-  //   }, []);
+  //     console.log('SOME_ARRAY обновлен');
+  //   }, [someArray]);
+
+  //   useEffect(() => {
+  //     console.log('COUNTER ИЛИ SOME_ARRAY обновлен');
+  //   }, [counter, someArray]);
+
+  // componentWillUnmount
+  useEffect(() => {
+    return () => {
+      console.log('Компонент был удален');
+    };
+  }, []);
 
   return (
     <div>

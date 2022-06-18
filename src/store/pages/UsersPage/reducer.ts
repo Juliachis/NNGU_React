@@ -16,7 +16,7 @@ export const UsersReducer = (
     case CREATE_USER:
       return { ...state, usersData: [...state.usersData, action.payload as IUsers] };
     case SET_USERS_DATA:
-      return { ...state, usersData: action.payload as IUsers[] };
+      return { ...state, usersData: action.payload as IUsers[] }; // кастинг типов
     default:
       return state;
   }

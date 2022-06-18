@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 interface IProps {
   limit: number;
   itemsAmount: number;
-  paginate: (page: number) => void;
+  pagesCount?: number;
 }
 
-const Pagination: FC<IProps> = ({ limit, itemsAmount, paginate }) => {
-  const pagesAmount = Math.ceil(itemsAmount / limit);
-  const pagesArray = [];
+const Pagination: FC<IProps> = ({ limit, itemsAmount, pagesCount }) => {
+  const pagesAmount = pagesCount || Math.ceil(itemsAmount / limit);
+  const pagesArray: number[] = [];
 
   const navigate = useNavigate();
 
@@ -20,13 +20,7 @@ const Pagination: FC<IProps> = ({ limit, itemsAmount, paginate }) => {
   return (
     <div>
       {pagesArray.map((page) => (
-        <button
-          key={`keay${page}`}
-          type="button"
-          onClick={() => {
-            navigate(`?page=${page}`);
-            paginate(page);
-          }}>
+        <button key={`key${page}`} type="button" onClick={() => navigate(`?page=${page}`)}>
           {page}
         </button>
       ))}

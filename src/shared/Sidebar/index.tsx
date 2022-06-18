@@ -5,6 +5,7 @@ import style from './Sidebar.module.scss';
 
 const Sidebar = () => {
   const { pathname } = useLocation();
+
   return (
     <div className={style.sidebar_wrapper}>
       <ul className={style.sidebar_menu}>
@@ -15,7 +16,7 @@ const Sidebar = () => {
               key={menuItem.id}
               to={menuItem.path}
               className={`${isActiveClassName} ${style.sidebar_menu_item}`}>
-              <li>{menuItem.name}</li>;
+              <li>{menuItem.name}</li>
             </Link>
           );
         })}
